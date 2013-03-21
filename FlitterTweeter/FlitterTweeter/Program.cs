@@ -29,16 +29,26 @@ namespace FlitterTweeter
             OAuthAccessToken a_token = t_serv.GetAccessToken(r_token, ver_num);
 
             // Console.WriteLine("The PIN you entered was " + ver_num + ".");
-            // Console.ReadKey(true);
-
+            
             // authenticate using the access token and secret
             t_serv.AuthenticateWith(a_token.Token, a_token.TokenSecret);
 
-            IEnumerable<TwitterStatus> mentions = t_serv.ListTweetsMentioningMe();
+            // get the tweets on the user's public timeline
+            string user_sn = t_serv.GetUserProfile().ScreenName;
+
+            Console.WriteLine("user id: " + user_sn);
+            /*
+            foreach (var tweet in lastTweets)
+            {
+                Console.WriteLine("{0} says {1}", tweet.User.ScreenName, tweet.Text);
+            }
+            */
+           
             // step 4: save user data in a database
 
             // step 5: display database info in a webpage
-            
+
+            Console.ReadKey(true);
         }
     }
 }
